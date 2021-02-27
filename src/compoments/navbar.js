@@ -35,6 +35,15 @@ function NavBar(props) {
                             </NavLink>
                         </React.Fragment>
                     )}
+                    {(props.role === "Coordinator") && (
+                        <React.Fragment>
+                            <NavLink className="nav-item nav-link" to="/view-submit">
+                                Approving account
+                            </NavLink>
+                            
+                        </React.Fragment>
+                    )}
+                    
                     {(props.role === "Student") && (
                         <React.Fragment>
                             <NavLink className="nav-item nav-link" to="/submitForm">

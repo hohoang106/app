@@ -14,7 +14,7 @@ import NotFound from './compoments/notFound'
 import HomePage from './compoments/homePage'
 import SubmitForm from './compoments/submitForm'
 import MySubmit from './compoments/mySubmit';
-
+import ListTitle from './compoments/listTitle';
 class App extends Component {
     state = {
         email: '',
@@ -52,6 +52,11 @@ class App extends Component {
                                 <Route path="/AccountList" exact component={AccountList} />
                                 <Route path="/AccountList/:id" component={AccountDetail} />
                             </React.Fragment>
+                        )}
+                        {(this.state.role === 'Coordinator') && (
+                            <>
+                                <Route path="/view-submit" component={ListTitle}/>
+                            </>
                         )}
                         {(this.state.role === "Student") && (
                             <React.Fragment>

@@ -31,6 +31,7 @@ const signUpTemplate = new mongoose.Schema({
     },
     role: {
         type: String,
+        enum: ['Student', 'Coordinator'],
         default: "Student"
     },
     submitId: {
