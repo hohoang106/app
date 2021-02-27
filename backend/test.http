@@ -4,8 +4,10 @@ Content-Type: application/json
 {
     "fullName" : "Hai",
     "username" : "haiqn",
-    "email" : "joe@gmail.com",
-    "password": "12345"
+    "email" : "joe3@gmail.com",
+    "password": "12345",
+    "role" : "Admin",
+    "faculty": "Maketing"
 }
 
 ####
@@ -51,4 +53,13 @@ Content-Type: application/json
     "email" : "hai@gmail.com",
     "password": "123456789",
     "role": ""
+}
+####
+
+POST http://localhost:4000/app/submitPicture
+Content-Type: application/json
+
+{
+    "imageName": "Pic1",
+    "imageData": "Pic data"
 }

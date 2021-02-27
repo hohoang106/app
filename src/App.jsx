@@ -12,12 +12,14 @@ import logout from './compoments/logout'
 import jwtDecode from 'jwt-decode'
 import NotFound from './compoments/notFound'
 import HomePage from './compoments/homePage'
-import SubmitPicture from './compoments/submitPicture'
+import SubmitForm from './compoments/submitForm'
+import MySubmit from './compoments/mySubmit';
 
 class App extends Component {
     state = {
         email: '',
-        role: ''
+        role: '',
+        id: ''
     }
 
     componentDidMount() {
@@ -25,14 +27,14 @@ class App extends Component {
             const jwt = localStorage.getItem("token");
             const user = jwtDecode(jwt).user;
             this.setState({ email: user.email });
-            this.setState({ role: user.role })
+            this.setState({ role: user.role });
+            this.setState({ id: user._id })
         } catch (error) {
             console.log("token empty");
         }
     }
 
     render() {
-        console.log(this.state.role === "Admin")
         return (
             <div>
                 <NavBar email={this.state.email} role={this.state.role} />
@@ -43,13 +45,22 @@ class App extends Component {
                         <Route path="/logout" component={logout} />
                         <Route path='/login' component={Login} />
                         <Route path='/NotFound' component={NotFound} />
-                        <Route path='/submtPicture' component={SubmitPicture} />
                         {(this.state.role === "Admin") && (
                             <React.Fragment>
                                 <Route path="/AdminCheck" component={AdminCheckAccount} />
                                 <Route path="/AddminCreateAccount" component={AdminCreateAccount} />
                                 <Route path="/AccountList" exact component={AccountList} />
                                 <Route path="/AccountList/:id" component={AccountDetail} />
+                            </React.Fragment>
+                        )}
+                        {(this.state.role === "Student") && (
+                            <React.Fragment>
+                                <Route path='/submitForm'>
+                                    <SubmitForm email={this.state.email} />
+                                </Route>
+                                <Route path='/mySubmit'>
+                                    <MySubmit id={this.state.id} />
+                                </Route>
                             </React.Fragment>
                         )}
                         <Redirect to='/NotFound' />

@@ -1,15 +1,22 @@
 const mongoose = require('mongoose');
 
-const submitTemplate = new mongoose.Schema({
-    imageName: {
+const submitTemplateCopy = new mongoose.Schema({
+    title: {
         type: String,
         default: "img",
         required: true
     },
-    imageData: {
-        type: String,
-        required: true
+    description: {
+        type: String
+    },
+    imageFiles: {
+        type: Array,
+        default: []
+    },
+    isChecked: {
+        type: Boolean,
+        default: false
     }
 });
 
-module.exports = mongoose.model('submitTable', submitTemplate)
+module.exports = mongoose.model('submitTable', submitTemplateCopy)
